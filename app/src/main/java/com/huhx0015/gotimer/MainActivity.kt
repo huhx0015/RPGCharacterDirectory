@@ -11,6 +11,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private lateinit var viewModelFactory: ViewModelFactory
 
+    private lateinit var topTimerFragment: TimerFragment
+    private lateinit var bottomTimerFragment: TimerFragment
+
     companion object {
         private const val TOP_TIMER = "TopTimerFragment"
         private const val BOTTOM_TIMER = "BottomTimerFragment"
@@ -29,9 +32,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFragments(savedInstanceState: Bundle?) {
-        val topTimerFragment: TimerFragment
-        val bottomTimerFragment: TimerFragment
-
         if (savedInstanceState != null) {
             topTimerFragment = supportFragmentManager.getFragment(savedInstanceState, TOP_TIMER) as TimerFragment
             bottomTimerFragment = supportFragmentManager.getFragment(savedInstanceState, BOTTOM_TIMER) as TimerFragment
@@ -49,7 +49,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         viewModelFactory = ViewModelFactory()
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
+        //viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java) // TODO: Update ViewModelFactory
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 
     override fun onDestroy() {

@@ -11,6 +11,7 @@
         android:id="@+id/topTimerSide"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:rotation = "180"
         app:layout_constraintBottom_toTopOf="@id/bottomTimerSide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,50 +25,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topTimerSide" />
-
-    <!--<ViewGroup-->
-        <!--android:id="@+id/bottomTimerSide" />-->
-
-    <!--<androidx.appcompat.widget.AppCompatButton-->
-        <!--android:id="@+id/startButton"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:text="START"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
-
-    <!--<androidx.appcompat.widget.AppCompatButton-->
-        <!--android:id="@+id/stopButton"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:text="STOP"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toEndOf="@+id/startButton" />-->
-
-    <!--&lt;!&ndash;<androidx.appcompat.widget.AppCompatButton&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/timeRemainingText"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text=""-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
