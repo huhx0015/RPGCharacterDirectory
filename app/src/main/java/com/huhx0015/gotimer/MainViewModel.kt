@@ -16,7 +16,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    fun startTimer(seconds: Long, timeRemaining: TextView) {
+    private var isStarted: Boolean = false
+    private var timeRemaining: Long = 0
+
+    fun startTimer(seconds: Long, timeRemainingText: TextView) {
+        isStarted = true
+         timeRemaining = seconds
+
         val subscription = Observable.interval(0, 1, TimeUnit.SECONDS)
             .take(seconds + 1)
             .map {
@@ -29,14 +35,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onNext = {
-                    timeRemaining.text = it.toString()
+                    timeRemaining = it
+                    timeRemainingText.text = it.toString()
+
+                    // Check if app is started or not
+                    if (isStarted) {
+
+                        
+
+                    }
+
                     Log.d("TEST", "onNext: $it")
                 }, // onNext
                 onError = {
                     Log.e("TEST", "onError: " + it.message)
                 }, // onError
                 onComplete = {
-                    timeRemaining.text = "FINISHED!"
+                    timeRemainingText.text = "FINISHED!"
                     Log.d("TEST", "onCompleted ")
                 } // onCompleted
             )
@@ -47,5 +62,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
+    }
+
+    fun isTimerStarted(isStart: Boolean) {
+        isStarted = isStart
     }
 }
