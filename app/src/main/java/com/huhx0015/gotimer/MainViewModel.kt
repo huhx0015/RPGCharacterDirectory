@@ -44,8 +44,7 @@ class MainViewModel: ViewModel() {
                 { timeButton.text = it.toString() }, // onNext
                 { e -> Log.e("TIMER", "Error: " + e.message) }, // onError
                 {
-                    // TODO: Currently does not work.
-                    if (timerValues[id]?.get() == 0L) {
+                    if (timerValues[id]?.get()!! <= 0) {
                         Log.d("TIMER", "Done!" )
                         timerStates[id] = TimerState.FINISHED
                         timeButton.text = "FINISHED"
