@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_timer.*
+import java.util.concurrent.atomic.AtomicLong
 
 class TimerFragment(private var listener: TimerFragmentListener) : Fragment() {
 
@@ -39,7 +40,9 @@ class TimerFragment(private var listener: TimerFragmentListener) : Fragment() {
 
         arguments?.let {
             fragmentId = it.getString(KEY_ID)
-            viewModel.timerValues[it.getString(KEY_ID)] = it.getLong(KEY_START_TIME)
+            val startTime = it.getLong(KEY_START_TIME)
+
+            viewModel.timerValues[fragmentId] = AtomicLong(startTime)
         }
     }
 
@@ -59,22 +62,20 @@ class TimerFragment(private var listener: TimerFragmentListener) : Fragment() {
     }
 
     private fun initView() {
-        val currentTime = viewModel.timerValues[fragmentId]
-        timerButton.text = currentTime.toString()
+        val startTime = viewModel.timerValues[fragmentId]?.get()
+        timerButton.text = startTime.toString()
 
         timerButton.setOnClickListener {
-
-            // Get the current time remaining.
-            val timeRemaining = viewModel.timerValues[fragmentId]
-
-            viewModel.startTimer(fragmentId, timeRemaining!!, timerButton)
+            viewModel.startTimer(fragmentId, viewModel.timerValues[fragmentId]?.get()!!, timerButton) // Starts timer
             listener.onTimerButtonClicked(fragmentId)
         }
     }
 
     private fun initViewModel() {
         viewModelFactory = ViewModelFactory()
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+
+        // Have to reference same activity to use same ViewModel instance.
+        viewModel = activity?.let { ViewModelProviders.of(it).get(MainViewModel::class.java) }!!
     }
 
     interface TimerFragmentListener {
