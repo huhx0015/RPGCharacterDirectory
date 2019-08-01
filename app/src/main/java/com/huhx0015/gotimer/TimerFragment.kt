@@ -68,7 +68,7 @@ class TimerFragment(private var listener: TimerFragmentListener) : Fragment() {
         timerButton.setOnClickListener {
 
             // Check if the timer is already running.
-            if (!viewModel.timerStates[fragmentId]?.equals(MainViewModel.TimerState.RUNNING)!!) {
+            if (!viewModel.timerStates[fragmentId]?.equals(State.RUNNING)!!) {
                 viewModel.startTimer(fragmentId, viewModel.timerValues[fragmentId]?.get()!!, timerButton) // Starts timer
                 listener.onTimerButtonClicked(fragmentId)
             }

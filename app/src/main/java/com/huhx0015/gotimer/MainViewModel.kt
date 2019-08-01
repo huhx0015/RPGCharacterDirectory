@@ -15,27 +15,22 @@ import java.util.concurrent.atomic.AtomicLong
 
 class MainViewModel: ViewModel() {
 
-    enum class TimerState {
-        NOT_STARTED, RUNNING, PAUSED, FINISHED
-    }
-
-    val timerStates = HashMap<String?, TimerState>() // Contains the timer states for each timer.
+    val timerStates = HashMap<String?, State>() // Contains the timer states for each timer.
     var timerValues = HashMap<String?, AtomicLong>() // Contains the time values for each timer.
 
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    @Deprecated("Possibly no longer needed?")
-    var currentState: LiveData<TimerState> = MutableLiveData()
+    var controlState: LiveData<State> = MutableLiveData()
 
     fun initTimer(id: String?) {
-        timerStates[id] = TimerState.NOT_STARTED
+        timerStates[id] = State.NOT_STARTED
     }
 
     fun startTimer(id: String?, seconds: Long, timeButton: Button) { //Create and starts timer
 
         val subscription = Flowable.interval(0, 1, TimeUnit.SECONDS)
             .take(seconds + 1)
-            .takeWhile { timerStates[id]?.equals(TimerState.RUNNING)!! }
+            .takeWhile { timerStates[id]?.equals(State.RUNNING)!! }
             .filter { it >= 0 } // Stopping conditions
             .map { timerValues[id]?.getAndDecrement() } // Decrements the timer value.
             .subscribeOn(Schedulers.io())
@@ -46,7 +41,7 @@ class MainViewModel: ViewModel() {
                 {
                     if (timerValues[id]?.get()!! <= 0) {
                         Log.d("TIMER", "Done!" )
-                        timerStates[id] = TimerState.FINISHED
+                        timerStates[id] = State.FINISHED
                         timeButton.text = "FINISHED"
                     }
                 } // onComplete
@@ -55,7 +50,7 @@ class MainViewModel: ViewModel() {
         compositeDisposable.add(subscription)
     }
 
-    fun getState(): TimerState? {
-        return currentState.value
+    fun getControl(): State? {
+        return controlState.value
     }
 }

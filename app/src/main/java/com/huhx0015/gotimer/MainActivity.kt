@@ -3,10 +3,9 @@ package com.huhx0015.gotimer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_timer.*
+import kotlinx.android.synthetic.main.view_controls.*
 
 class MainActivity : AppCompatActivity(), TimerFragment.TimerFragmentListener {
 
@@ -27,6 +26,7 @@ class MainActivity : AppCompatActivity(), TimerFragment.TimerFragmentListener {
         super.onCreate(savedInstanceState)
 
         initView()
+        initControls()
         initViewModel()
         initFragments(savedInstanceState)
         initObserver()
@@ -39,6 +39,23 @@ class MainActivity : AppCompatActivity(), TimerFragment.TimerFragmentListener {
 
     private fun initView() {
         setContentView(R.layout.activity_main)
+    }
+
+    private fun initControls() {
+        ib_pause.setOnClickListener {
+            // TODO: Handle control state here.
+        }
+    }
+
+
+    private fun initViewModel() {
+        viewModelFactory = ViewModelFactory()
+        //viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java) // TODO: Update ViewModelFactory
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+
+        // Sets each timer state to NOT_STARTED
+        viewModel.initTimer(TOP_TIMER_ID)
+        viewModel.initTimer(BOTTOM_TIMER_ID)
     }
 
     private fun initFragments(savedInstanceState: Bundle?) {
@@ -61,26 +78,17 @@ class MainActivity : AppCompatActivity(), TimerFragment.TimerFragmentListener {
 //        viewModel.currentState.observe(this, Observer {
 //            it?.let {
 //                when (it) {
-//                    MainViewModel.TimerState.NOT_STARTED -> Log.d(TAG, "Not Started")
-//                    MainViewModel.TimerState.TOP_TIMER_RUNNING -> Log.d(TAG, "Top Timer Running")
-//                    MainViewModel.TimerState.BOTTOM_TIMER_RUNNING -> Log.d(TAG, "Bottom Timer Running")
-//                    MainViewModel.TimerState.PAUSED -> Log.d(TAG, "Paused")
-//                    MainViewModel.TimerState.FINISHED -> Log.d(TAG, "Finished")
+//                    MainViewModel.State.NOT_STARTED -> Log.d(TAG, "Not Started")
+//                    MainViewModel.State.TOP_TIMER_RUNNING -> Log.d(TAG, "Top Timer Running")
+//                    MainViewModel.State.BOTTOM_TIMER_RUNNING -> Log.d(TAG, "Bottom Timer Running")
+//                    MainViewModel.State.PAUSED -> Log.d(TAG, "Paused")
+//                    MainViewModel.State.FINISHED -> Log.d(TAG, "Finished")
 //                }
 //            }
 //        })
     }
 
-    private fun initViewModel() {
-        viewModelFactory = ViewModelFactory()
-        //viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java) // TODO: Update ViewModelFactory
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-
-        // Sets each timer state to NOT_STARTED
-        viewModel.initTimer(TOP_TIMER_ID)
-        viewModel.initTimer(BOTTOM_TIMER_ID)
-    }
 
     override fun onTimerButtonClicked(id: String?) {
 
@@ -88,9 +96,9 @@ class MainActivity : AppCompatActivity(), TimerFragment.TimerFragmentListener {
             TOP_TIMER_ID -> {
                 Log.d("TIMER", "TOP TIMER BUTTON TAPPED")
 
-                if (!viewModel.timerStates[TOP_TIMER_ID]?.equals(MainViewModel.TimerState.RUNNING)!!) {
-                    viewModel.timerStates[TOP_TIMER_ID] = MainViewModel.TimerState.RUNNING // Sets the running state.
-                    viewModel.timerStates[BOTTOM_TIMER_ID] = MainViewModel.TimerState.PAUSED // Sets the running state.
+                if (!viewModel.timerStates[TOP_TIMER_ID]?.equals(State.RUNNING)!!) {
+                    viewModel.timerStates[TOP_TIMER_ID] = State.RUNNING // Sets the running state.
+                    viewModel.timerStates[BOTTOM_TIMER_ID] = State.PAUSED // Sets the running state.
                 }
 
 
@@ -98,9 +106,9 @@ class MainActivity : AppCompatActivity(), TimerFragment.TimerFragmentListener {
             BOTTOM_TIMER_ID -> {
                 Log.d("TIMER", "BOTTOM TIMER BUTTON TAPPED")
 
-                if (!viewModel.timerStates[BOTTOM_TIMER_ID]?.equals(MainViewModel.TimerState.RUNNING)!!) {
-                    viewModel.timerStates[BOTTOM_TIMER_ID] = MainViewModel.TimerState.RUNNING // Sets the running state.
-                    viewModel.timerStates[TOP_TIMER_ID] = MainViewModel.TimerState.PAUSED // Sets the running state.
+                if (!viewModel.timerStates[BOTTOM_TIMER_ID]?.equals(State.RUNNING)!!) {
+                    viewModel.timerStates[BOTTOM_TIMER_ID] = State.RUNNING // Sets the running state.
+                    viewModel.timerStates[TOP_TIMER_ID] = State.PAUSED // Sets the running state.
                 }
             }
         }
