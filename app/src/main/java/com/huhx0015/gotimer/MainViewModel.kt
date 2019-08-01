@@ -50,7 +50,28 @@ class MainViewModel: ViewModel() {
         compositeDisposable.add(subscription)
     }
 
+    fun switchTimerState(id: String) {
+        when (id) {
+            MainActivity.TOP_TIMER_ID -> {
+                if (!timerStates[MainActivity.TOP_TIMER_ID]?.equals(State.RUNNING)!!) {
+                    timerStates[MainActivity.TOP_TIMER_ID] = State.RUNNING // Sets the running state.
+                    timerStates[MainActivity.BOTTOM_TIMER_ID] = State.PAUSED // Sets the running state.
+                }
+            }
+            MainActivity.BOTTOM_TIMER_ID -> {
+                if (!timerStates[MainActivity.BOTTOM_TIMER_ID]?.equals(State.RUNNING)!!) {
+                    timerStates[MainActivity.BOTTOM_TIMER_ID] = State.RUNNING // Sets the running state.
+                    timerStates[MainActivity.TOP_TIMER_ID] = State.PAUSED // Sets the running state.
+                }
+            }
+        }
+    }
+
     fun getControl(): State? {
         return controlState.value
+    }
+
+    fun onDestroy() {
+        compositeDisposable.dispose()
     }
 }

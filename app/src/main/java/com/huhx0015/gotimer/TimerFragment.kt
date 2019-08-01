@@ -11,8 +11,8 @@ import kotlinx.android.synthetic.main.fragment_timer.*
 import java.util.concurrent.atomic.AtomicLong
 
 class TimerFragment(private var listener: TimerFragmentListener) : Fragment() {
-
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
+
     private lateinit var viewModel: MainViewModel
     private lateinit var viewModelFactory: ViewModelFactory
 
@@ -70,7 +70,7 @@ class TimerFragment(private var listener: TimerFragmentListener) : Fragment() {
             // Check if the timer is already running.
             if (!viewModel.timerStates[fragmentId]?.equals(State.RUNNING)!!) {
                 viewModel.startTimer(fragmentId, viewModel.timerValues[fragmentId]?.get()!!, timerButton) // Starts timer
-                listener.onTimerButtonClicked(fragmentId)
+                listener.onTimerButtonClicked(fragmentId!!)
             }
         }
     }
@@ -83,6 +83,6 @@ class TimerFragment(private var listener: TimerFragmentListener) : Fragment() {
     }
 
     interface TimerFragmentListener {
-        fun onTimerButtonClicked(id: String?)
+        fun onTimerButtonClicked(id: String)
     }
 }

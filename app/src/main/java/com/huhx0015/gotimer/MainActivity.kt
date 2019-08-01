@@ -2,14 +2,10 @@ package com.huhx0015.gotimer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProviders
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.view_controls.*
 
 class MainActivity : AppCompatActivity(), TimerFragment.TimerFragmentListener {
-
-    private var compositeDisposable: CompositeDisposable = CompositeDisposable()
     private lateinit var viewModel: MainViewModel
     private lateinit var viewModelFactory: ViewModelFactory
 
@@ -18,8 +14,8 @@ class MainActivity : AppCompatActivity(), TimerFragment.TimerFragmentListener {
 
     companion object {
         private const val TAG = "MainActivity"
-        private const val TOP_TIMER_ID = "TopTimerFragment"
-        private const val BOTTOM_TIMER_ID = "BottomTimerFragment"
+        const val TOP_TIMER_ID = "TopTimerFragment"
+        const val BOTTOM_TIMER_ID = "BottomTimerFragment"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +30,7 @@ class MainActivity : AppCompatActivity(), TimerFragment.TimerFragmentListener {
 
     override fun onDestroy() {
         super.onDestroy()
-        compositeDisposable.dispose()
+        viewModel.onDestroy()
     }
 
     private fun initView() {
@@ -46,7 +42,6 @@ class MainActivity : AppCompatActivity(), TimerFragment.TimerFragmentListener {
             // TODO: Handle control state here.
         }
     }
-
 
     private fun initViewModel() {
         viewModelFactory = ViewModelFactory()
@@ -88,29 +83,7 @@ class MainActivity : AppCompatActivity(), TimerFragment.TimerFragmentListener {
 //        })
     }
 
-
-
-    override fun onTimerButtonClicked(id: String?) {
-
-        when (id) {
-            TOP_TIMER_ID -> {
-                Log.d("TIMER", "TOP TIMER BUTTON TAPPED")
-
-                if (!viewModel.timerStates[TOP_TIMER_ID]?.equals(State.RUNNING)!!) {
-                    viewModel.timerStates[TOP_TIMER_ID] = State.RUNNING // Sets the running state.
-                    viewModel.timerStates[BOTTOM_TIMER_ID] = State.PAUSED // Sets the running state.
-                }
-
-
-            }
-            BOTTOM_TIMER_ID -> {
-                Log.d("TIMER", "BOTTOM TIMER BUTTON TAPPED")
-
-                if (!viewModel.timerStates[BOTTOM_TIMER_ID]?.equals(State.RUNNING)!!) {
-                    viewModel.timerStates[BOTTOM_TIMER_ID] = State.RUNNING // Sets the running state.
-                    viewModel.timerStates[TOP_TIMER_ID] = State.PAUSED // Sets the running state.
-                }
-            }
-        }
+    override fun onTimerButtonClicked(id: String) {
+        viewModel.switchTimerState(id)
     }
 }
