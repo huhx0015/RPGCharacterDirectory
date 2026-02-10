@@ -43,6 +43,7 @@ ext {
     junit_version = "4.13.2"
     lifecycle_version = "2.10.0"
     material_version = "1.13.0"
+    moshi_version = "1.15.2"
     test_runner_version = "1.7.0"
 }
 
@@ -52,7 +53,6 @@ dependencies {
     // ANDROIDX
     implementation "androidx.core:core-ktx:$core_ktx_version"
 
-    
     // COMPOSE
     implementation platform("androidx.compose:compose-bom:$compose_version")
     implementation "androidx.compose.runtime:runtime"
@@ -69,6 +69,11 @@ dependencies {
     // KOTLIN
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "com.google.android.material:material:$material_version"
+
+    // MOSHI
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
     // TEST
     testImplementation "junit:junit:$junit_version"
