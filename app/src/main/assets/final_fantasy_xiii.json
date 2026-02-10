@@ -1,0 +1,8 @@
+[
+  { "id": 95, "name": "Lightning", "class": "Guardian Corps Soldier", "leaderId": null, "game": "Final Fantasy XIII", "gameId": 1013 },
+  { "id": 96, "name": "Snow Villiers", "class": "Rebel Leader", "leaderId": 10, "game": "Final Fantasy XIII", "gameId": 1013 },
+  { "id": 97, "name": "Sazh Katzroy", "class": "Pilot", "leaderId": 10, "game": "Final Fantasy XIII", "gameId": 1013 },
+  { "id": 98, "name": "Hope Estheim", "class": "Tactician", "leaderId": 10, "game": "Final Fantasy XIII", "gameId": 1013 },
+  { "id": 99, "name": "Oerba Dia Vanille", "class": "L'Cie", "leaderId": 10, "game": "Final Fantasy XIII", "gameId": 1013 },
+  { "id": 100, "name": "Oerba Yun Fang", "class": "L'Cie", "leaderId": 10, "game": "Final Fantasy XIII", "gameId": 1013 }
+]

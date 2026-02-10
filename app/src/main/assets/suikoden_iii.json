@@ -1,0 +1,7 @@
+[
+  { "id": 145, "name": "Hugo", "class": "Warrior", "leaderId": null, "game": "Suikoden III", "gameId": 3003 },
+  { "id": 146, "name": "Chris Lightfellow", "class": "Knight Commander", "leaderId": 15, "game": "Suikoden III", "gameId": 3003 },
+  { "id": 147, "name": "Geddoe", "class": "Mercenary Captain", "leaderId": 15, "game": "Suikoden III", "gameId": 3003 },
+  { "id": 148, "name": "Thomas", "class": "Lord", "leaderId": 15, "game": "Suikoden III", "gameId": 3003 },
+  { "id": 149, "name": "Luc", "class": "Mage", "leaderId": 15, "game": "Suikoden III", "gameId": 3003 }
+]

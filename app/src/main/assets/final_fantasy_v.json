@@ -1,0 +1,7 @@
+[
+  { "id": 67, "name": "Bartz Klauser", "class": "Adventurer", "leaderId": null, "game": "Final Fantasy V", "gameId": 1005 },
+  { "id": 68, "name": "Lenna Charlotte Tycoon", "class": "Princess", "leaderId": 3, "game": "Final Fantasy V", "gameId": 1005 },
+  { "id": 69, "name": "Faris Scherwiz", "class": "Pirate", "leaderId": 3, "game": "Final Fantasy V", "gameId": 1005 },
+  { "id": 70, "name": "Galuf Halm Baldesion", "class": "Warrior", "leaderId": 3, "game": "Final Fantasy V", "gameId": 1005 },
+  { "id": 71, "name": "Krile Mayer Baldesion", "class": "Mage", "leaderId": 3, "game": "Final Fantasy V", "gameId": 1005 }
+]

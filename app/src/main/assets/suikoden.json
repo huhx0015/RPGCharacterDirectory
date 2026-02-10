@@ -1,0 +1,12 @@
+[
+  { "id": 7, "name": "Mathiu Silverberg", "class": "Strategist", "leaderId": 13, "game": "Suikoden", "gameId": 3001 },
+  { "id": 10, "name": "Odessa Silverberg", "class": "Revolutionary Leader", "leaderId": 13, "game": "Suikoden", "gameId": 3001 },
+  { "id": 13, "name": "Leon Silverberg", "class": "Strategist", "leaderId": 13, "game": "Suikoden", "gameId": 3001 },
+  { "id": 130, "name": "Tir McDohl", "class": "Leader", "leaderId": null, "game": "Suikoden", "gameId": 3001 },
+  { "id": 131, "name": "Gremio", "class": "Steward", "leaderId": 13, "game": "Suikoden", "gameId": 3001 },
+  { "id": 132, "name": "Cleo", "class": "Mage", "leaderId": 13, "game": "Suikoden", "gameId": 3001 },
+  { "id": 133, "name": "Pahn", "class": "Warrior", "leaderId": 13, "game": "Suikoden", "gameId": 3001 },
+  { "id": 134, "name": "Ted", "class": "Rune Bearer", "leaderId": 13, "game": "Suikoden", "gameId": 3001 },
+  { "id": 135, "name": "Viktor", "class": "Mercenary", "leaderId": 13, "game": "Suikoden", "gameId": 3001 },
+  { "id": 136, "name": "Flik", "class": "Swordsman", "leaderId": 13, "game": "Suikoden", "gameId": 3001 }
+]

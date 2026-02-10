@@ -1,0 +1,6 @@
+[
+  { "id": 51, "name": "Firion", "class": "Rebel Swordsman", "leaderId": null, "game": "Final Fantasy II", "gameId": 1002 },
+  { "id": 52, "name": "Maria", "class": "Archer", "leaderId": 1, "game": "Final Fantasy II", "gameId": 1002 },
+  { "id": 53, "name": "Guy", "class": "Warrior", "leaderId": 1, "game": "Final Fantasy II", "gameId": 1002 },
+  { "id": 54, "name": "Leon", "class": "Dark Knight", "leaderId": 1, "game": "Final Fantasy II", "gameId": 1002 }
+]

@@ -1,0 +1,19 @@
+[
+  { "id": 8, "name": "Terra Bradford", "class": "Magitek Knight", "leaderId": null, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 11, "name": "Locke Cole", "class": "Treasure Hunter", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 12, "name": "Celes Chere", "class": "Rune Knight", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 15, "name": "Edgar Roni Figaro", "class": "King / Machinist", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 16, "name": "Cyan Garamonde", "class": "Samurai", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 17, "name": "Setzer Gabbiani", "class": "Gambler", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 18, "name": "Relm Arrowny", "class": "Painter", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 19, "name": "Kefka Palazzo", "class": "Court Mage", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 20, "name": "Sabin Rene Figaro", "class": "Monk", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 21, "name": "Leo Christophe", "class": "Imperial General", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 22, "name": "Cid Marquez", "class": "Scientist", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 72, "name": "Shadow", "class": "Ninja", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 73, "name": "Strago Magus", "class": "Blue Mage", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 74, "name": "Mog", "class": "Dancer", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 75, "name": "Gau", "class": "Feral Youth", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 76, "name": "Gogo", "class": "Mime", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 },
+  { "id": 77, "name": "Umaro", "class": "Berserker", "leaderId": 4, "game": "Final Fantasy VI", "gameId": 1006 }
+]

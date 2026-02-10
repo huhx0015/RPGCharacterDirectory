@@ -1,0 +1,13 @@
+[
+  { "id": 34, "name": "Squall Leonhart", "class": "SeeD", "leaderId": null, "game": "Final Fantasy VIII", "gameId": 1008 },
+  { "id": 35, "name": "Irvine Kinneas", "class": "Sharpshooter", "leaderId": 6, "game": "Final Fantasy VIII", "gameId": 1008 },
+  { "id": 36, "name": "Quistis Trepe", "class": "SeeD Instructor", "leaderId": 6, "game": "Final Fantasy VIII", "gameId": 1008 },
+  { "id": 37, "name": "Selphie Tilmitt", "class": "SeeD", "leaderId": 6, "game": "Final Fantasy VIII", "gameId": 1008 },
+  { "id": 38, "name": "Rinoa Heartily", "class": "Resistance Member", "leaderId": 6, "game": "Final Fantasy VIII", "gameId": 1008 },
+  { "id": 39, "name": "Zell Dincht", "class": "SeeD", "leaderId": 6, "game": "Final Fantasy VIII", "gameId": 1008 },
+  { "id": 40, "name": "Laguna Loire", "class": "Soldier", "leaderId": 6, "game": "Final Fantasy VIII", "gameId": 1008 },
+  { "id": 41, "name": "Seifer Almasy", "class": "SeeD Cadet", "leaderId": 6, "game": "Final Fantasy VIII", "gameId": 1008 },
+  { "id": 42, "name": "Edea Kramer", "class": "Sorceress", "leaderId": 6, "game": "Final Fantasy VIII", "gameId": 1008 },
+  { "id": 43, "name": "Kiros Seagil", "class": "Galbadian Soldier", "leaderId": 6, "game": "Final Fantasy VIII", "gameId": 1008 },
+  { "id": 44, "name": "Ward Zabac", "class": "Galbadian Soldier", "leaderId": 6, "game": "Final Fantasy VIII", "gameId": 1008 }
+]

@@ -1,0 +1,14 @@
+[
+  { "id": 55, "name": "Cecil Harvey", "class": "Paladin", "leaderId": null, "game": "Final Fantasy IV", "gameId": 1004 },
+  { "id": 56, "name": "Kain Highwind", "class": "Dragoon", "leaderId": 2, "game": "Final Fantasy IV", "gameId": 1004 },
+  { "id": 57, "name": "Rydia", "class": "Summoner", "leaderId": 2, "game": "Final Fantasy IV", "gameId": 1004 },
+  { "id": 58, "name": "Rosa Farrell", "class": "White Mage", "leaderId": 2, "game": "Final Fantasy IV", "gameId": 1004 },
+  { "id": 59, "name": "Tellah", "class": "Sage", "leaderId": 2, "game": "Final Fantasy IV", "gameId": 1004 },
+  { "id": 60, "name": "Edward Chris von Muir", "class": "Bard", "leaderId": 2, "game": "Final Fantasy IV", "gameId": 1004 },
+  { "id": 61, "name": "Yang Fang Leiden", "class": "Monk", "leaderId": 2, "game": "Final Fantasy IV", "gameId": 1004 },
+  { "id": 62, "name": "Palom", "class": "Black Mage", "leaderId": 2, "game": "Final Fantasy IV", "gameId": 1004 },
+  { "id": 63, "name": "Porom", "class": "White Mage", "leaderId": 2, "game": "Final Fantasy IV", "gameId": 1004 },
+  { "id": 64, "name": "Cid Pollendina", "class": "Engineer", "leaderId": 2, "game": "Final Fantasy IV", "gameId": 1004 },
+  { "id": 65, "name": "Edge Geraldine", "class": "Ninja", "leaderId": 2, "game": "Final Fantasy IV", "gameId": 1004 },
+  { "id": 66, "name": "FuSoYa", "class": "Lunarian Sage", "leaderId": 2, "game": "Final Fantasy IV", "gameId": 1004 }
+]

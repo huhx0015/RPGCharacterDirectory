@@ -1,0 +1,6 @@
+[
+  { "id": 101, "name": "Noctis Lucis Caelum", "class": "Prince", "leaderId": null, "game": "Final Fantasy XV", "gameId": 1015 },
+  { "id": 102, "name": "Gladiolus Amicitia", "class": "Shield of the King", "leaderId": 11, "game": "Final Fantasy XV", "gameId": 1015 },
+  { "id": 103, "name": "Ignis Scientia", "class": "Advisor", "leaderId": 11, "game": "Final Fantasy XV", "gameId": 1015 },
+  { "id": 104, "name": "Prompto Argentum", "class": "Gunslinger", "leaderId": 11, "game": "Final Fantasy XV", "gameId": 1015 }
+]

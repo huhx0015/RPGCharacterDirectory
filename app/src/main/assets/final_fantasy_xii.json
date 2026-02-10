@@ -1,0 +1,8 @@
+[
+  { "id": 89, "name": "Vaan", "class": "Sky Pirate Aspirant", "leaderId": null, "game": "Final Fantasy XII", "gameId": 1012 },
+  { "id": 90, "name": "Ashe", "class": "Princess", "leaderId": 9, "game": "Final Fantasy XII", "gameId": 1012 },
+  { "id": 91, "name": "Basch fon Ronsenburg", "class": "Knight", "leaderId": 9, "game": "Final Fantasy XII", "gameId": 1012 },
+  { "id": 92, "name": "Balthier", "class": "Sky Pirate", "leaderId": 9, "game": "Final Fantasy XII", "gameId": 1012 },
+  { "id": 93, "name": "Fran", "class": "Viera Warrior", "leaderId": 9, "game": "Final Fantasy XII", "gameId": 1012 },
+  { "id": 94, "name": "Penelo", "class": "Dancer", "leaderId": 9, "game": "Final Fantasy XII", "gameId": 1012 }
+]

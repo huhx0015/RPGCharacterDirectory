@@ -1,0 +1,10 @@
+[
+  { "id": 137, "name": "Riou", "class": "Leader", "leaderId": null, "game": "Suikoden II", "gameId": 3002 },
+  { "id": 138, "name": "Jowy Atreides", "class": "Strategist", "leaderId": 14, "game": "Suikoden II", "gameId": 3002 },
+  { "id": 139, "name": "Nanami", "class": "Warrior", "leaderId": 14, "game": "Suikoden II", "gameId": 3002 },
+  { "id": 140, "name": "Shu", "class": "Strategist", "leaderId": 14, "game": "Suikoden II", "gameId": 3002 },
+  { "id": 141, "name": "Apple", "class": "Tactician", "leaderId": 14, "game": "Suikoden II", "gameId": 3002 },
+  { "id": 142, "name": "Georg Prime", "class": "Swordsman", "leaderId": 14, "game": "Suikoden II", "gameId": 3002 },
+  { "id": 143, "name": "Viktor", "class": "Mercenary", "leaderId": 14, "game": "Suikoden II", "gameId": 3002 },
+  { "id": 144, "name": "Flik", "class": "Swordsman", "leaderId": 14, "game": "Suikoden II", "gameId": 3002 }
+]

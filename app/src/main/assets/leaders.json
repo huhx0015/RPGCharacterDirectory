@@ -1,0 +1,121 @@
+[
+  {
+    "id": 1,
+    "name": "Firion",
+    "class": "Rebel Swordsman",
+    "game": "Final Fantasy II",
+    "gameId": 1002
+  },
+  {
+    "id": 2,
+    "name": "Cecil Harvey",
+    "class": "Paladin",
+    "game": "Final Fantasy IV",
+    "gameId": 1004
+  },
+  {
+    "id": 3,
+    "name": "Bartz Klauser",
+    "class": "Adventurer",
+    "game": "Final Fantasy V",
+    "gameId": 1005
+  },
+  {
+    "id": 4,
+    "name": "Terra Bradford",
+    "class": "Magitek Knight",
+    "game": "Final Fantasy VI",
+    "gameId": 1006
+  },
+  {
+    "id": 5,
+    "name": "Cloud Strife",
+    "class": "Ex-SOLDIER Mercenary",
+    "game": "Final Fantasy VII",
+    "gameId": 1007
+  },
+  {
+    "id": 6,
+    "name": "Squall Leonhart",
+    "class": "SeeD",
+    "game": "Final Fantasy VIII",
+    "gameId": 1008
+  },
+  {
+    "id": 7,
+    "name": "Zidane Tribal",
+    "class": "Thief",
+    "game": "Final Fantasy IX",
+    "gameId": 1009
+  },
+  {
+    "id": 8,
+    "name": "Tidus",
+    "class": "Ace",
+    "game": "Final Fantasy X",
+    "gameId": 1010
+  },
+  {
+    "id": 9,
+    "name": "Vaan",
+    "class": "Sky Pirate Aspirant",
+    "game": "Final Fantasy XII",
+    "gameId": 1012
+  },
+  {
+    "id": 10,
+    "name": "Lightning",
+    "class": "Guardian Corps Soldier",
+    "game": "Final Fantasy XIII",
+    "gameId": 1013
+  },
+  {
+    "id": 11,
+    "name": "Noctis Lucis Caelum",
+    "class": "Prince",
+    "game": "Final Fantasy XV",
+    "gameId": 1015
+  },
+  {
+    "id": 12,
+    "name": "Clive Rosfield",
+    "class": "Bearer / Dominant",
+    "game": "Final Fantasy XVI",
+    "gameId": 1016
+  },
+  {
+    "id": 13,
+    "name": "Tir McDohl",
+    "class": "Leader",
+    "game": "Suikoden",
+    "gameId": 3001
+  },
+  {
+    "id": 14,
+    "name": "Riou",
+    "class": "Leader",
+    "game": "Suikoden II",
+    "gameId": 3002
+  },
+  {
+    "id": 15,
+    "name": "Hugo",
+    "class": "Warrior",
+    "game": "Suikoden III",
+    "gameId": 3003
+  },
+  {
+    "id": 16,
+    "name": "Lazlo",
+    "class": "Captain",
+    "game": "Suikoden IV",
+    "gameId": 3004
+  },
+  {
+    "id": 17,
+    "name": "Freyjadour Falenas",
+    "class": "Prince",
+    "game": "Suikoden V",
+    "gameId": 3005
+  }
+]

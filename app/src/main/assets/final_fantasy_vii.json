@@ -1,0 +1,12 @@
+[
+  { "id": 9, "name": "Cloud Strife", "class": "Ex-SOLDIER Mercenary", "leaderId": null, "game": "Final Fantasy VII", "gameId": 1007 },
+  { "id": 23, "name": "Barret Wallace", "class": "AVALANCHE Leader", "leaderId": 5, "game": "Final Fantasy VII", "gameId": 1007 },
+  { "id": 24, "name": "Tifa Lockhart", "class": "Martial Artist", "leaderId": 5, "game": "Final Fantasy VII", "gameId": 1007 },
+  { "id": 25, "name": "Aerith Gainsborough", "class": "Cetra (Ancient)", "leaderId": 5, "game": "Final Fantasy VII", "gameId": 1007 },
+  { "id": 30, "name": "Yuffie Kisaragi", "class": "Ninja", "leaderId": 5, "game": "Final Fantasy VII", "gameId": 1007 },
+  { "id": 31, "name": "Vincent Valentine", "class": "Former Turk", "leaderId": 5, "game": "Final Fantasy VII", "gameId": 1007 },
+  { "id": 32, "name": "Cid Highwind", "class": "Pilot", "leaderId": 5, "game": "Final Fantasy VII", "gameId": 1007 },
+  { "id": 33, "name": "Zack Fair", "class": "SOLDIER 1st Class", "leaderId": 5, "game": "Final Fantasy VII", "gameId": 1007 },
+  { "id": 78, "name": "Red XIII", "class": "Beast Warrior", "leaderId": 5, "game": "Final Fantasy VII", "gameId": 1007 },
+  { "id": 79, "name": "Cait Sith", "class": "Fortune Teller", "leaderId": 5, "game": "Final Fantasy VII", "gameId": 1007 }
+]

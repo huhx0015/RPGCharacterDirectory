@@ -1,0 +1,7 @@
+[
+  { "id": 150, "name": "Lazlo", "class": "Captain", "leaderId": null, "game": "Suikoden IV", "gameId": 3004 },
+  { "id": 151, "name": "Snowe Vingerhut", "class": "Knight", "leaderId": 16, "game": "Suikoden IV", "gameId": 3004 },
+  { "id": 152, "name": "Kika", "class": "Pirate Captain", "leaderId": 16, "game": "Suikoden IV", "gameId": 3004 },
+  { "id": 153, "name": "Lino En Kuldes", "class": "King", "leaderId": 16, "game": "Suikoden IV", "gameId": 3004 },
+  { "id": 154, "name": "Tal", "class": "Bodyguard", "leaderId": 16, "game": "Suikoden IV", "gameId": 3004 }
+]

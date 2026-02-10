@@ -1,0 +1,8 @@
+[
+  { "id": 155, "name": "Freyjadour Falenas", "class": "Prince", "leaderId": null, "game": "Suikoden V", "gameId": 3005 },
+  { "id": 156, "name": "Lyon", "class": "Bodyguard", "leaderId": 17, "game": "Suikoden V", "gameId": 3005 },
+  { "id": 157, "name": "Sialeeds Falenas", "class": "Princess", "leaderId": 17, "game": "Suikoden V", "gameId": 3005 },
+  { "id": 158, "name": "Georg Prime", "class": "Swordsman", "leaderId": 17, "game": "Suikoden V", "gameId": 3005 },
+  { "id": 159, "name": "Kyle", "class": "Knight", "leaderId": 17, "game": "Suikoden V", "gameId": 3005 },
+  { "id": 160, "name": "Zerase", "class": "Mage", "leaderId": 17, "game": "Suikoden V", "gameId": 3005 }
+]

@@ -1,0 +1,8 @@
+[
+  { "id": 105, "name": "Clive Rosfield", "class": "Bearer / Dominant", "leaderId": null, "game": "Final Fantasy XVI", "gameId": 1016 },
+  { "id": 106, "name": "Jill Warrick", "class": "Dominant", "leaderId": 12, "game": "Final Fantasy XVI", "gameId": 1016 },
+  { "id": 107, "name": "Cidolfus Telamon", "class": "Outlaw Leader", "leaderId": 12, "game": "Final Fantasy XVI", "gameId": 1016 },
+  { "id": 108, "name": "Joshua Rosfield", "class": "Dominant", "leaderId": 12, "game": "Final Fantasy XVI", "gameId": 1016 },
+  { "id": 109, "name": "Torgal", "class": "Companion Wolf", "leaderId": 12, "game": "Final Fantasy XVI", "gameId": 1016 },
+  { "id": 110, "name": "Dion Lesage", "class": "Dragoon Prince", "leaderId": 12, "game": "Final Fantasy XVI", "gameId": 1016 }
+]

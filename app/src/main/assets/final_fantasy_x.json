@@ -1,0 +1,9 @@
+[
+  { "id": 82, "name": "Tidus", "class": "Ace", "leaderId": null, "game": "Final Fantasy X", "gameId": 1010 },
+  { "id": 83, "name": "Yuna", "class": "Summoner", "leaderId": 8, "game": "Final Fantasy X", "gameId": 1010 },
+  { "id": 84, "name": "Wakka", "class": "Blitzer", "leaderId": 8, "game": "Final Fantasy X", "gameId": 1010 },
+  { "id": 85, "name": "Lulu", "class": "Black Mage", "leaderId": 8, "game": "Final Fantasy X", "gameId": 1010 },
+  { "id": 86, "name": "Kimahri Ronso", "class": "Ronso Warrior", "leaderId": 8, "game": "Final Fantasy X", "gameId": 1010 },
+  { "id": 87, "name": "Rikku", "class": "Thief", "leaderId": 8, "game": "Final Fantasy X", "gameId": 1010 },
+  { "id": 88, "name": "Auron", "class": "Guardian", "leaderId": 8, "game": "Final Fantasy X", "gameId": 1010 }
+]
