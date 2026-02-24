@@ -1,4 +1,4 @@
-package com.huhx0015.rpgcharacterdirectory.ui
+package com.huhx0015.rpgcharacterdirectory.ui.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

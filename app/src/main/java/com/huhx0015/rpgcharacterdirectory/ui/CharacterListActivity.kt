@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import com.huhx0015.rpgcharacterdirectory.model.RPGCharacter
+import androidx.compose.runtime.collectAsState
+import com.huhx0015.rpgcharacterdirectory.ui.compose.CharacterComposeScreen
 
 class CharacterListActivity: ComponentActivity() {
 
@@ -12,19 +13,18 @@ class CharacterListActivity: ComponentActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    renderCompose()
     loadData()
   }
 
   private fun loadData() {
-    val characterList = viewModel.loadJsonData(this)
-    characterList?.let {
-      renderCompose(characterList = characterList)
-    }
+    viewModel.loadAllCharacterDate(this)
   }
 
-  private fun renderCompose(characterList: List<RPGCharacter>) {
+  private fun renderCompose() {
     setContent {
-      CharacterComposeScreen(characterList = characterList)
+      val state = viewModel.stateFlow.collectAsState()
+      CharacterComposeScreen(characterList = state.value.allCharacterList())
     }
   }
 }
