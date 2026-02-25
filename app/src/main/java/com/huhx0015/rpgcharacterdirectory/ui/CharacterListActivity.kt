@@ -24,7 +24,10 @@ class CharacterListActivity: ComponentActivity() {
   private fun renderCompose() {
     setContent {
       val state = viewModel.stateFlow.collectAsState()
-      CharacterComposeScreen(characterList = state.value.allCharacterList())
+      CharacterComposeScreen(
+        characterList = state.value.allCharacterList(),
+        gameList = state.value.gameList()
+      )
     }
   }
 }
