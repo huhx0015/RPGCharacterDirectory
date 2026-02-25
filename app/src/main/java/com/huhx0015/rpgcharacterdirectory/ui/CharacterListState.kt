@@ -16,4 +16,9 @@ data class CharacterListState(
   fun gameList(): Set<String> {
     return characterListMap.values.flatten().map { character -> character.game }.toSet()
   }
+
+  // getFilteredCharacterList: Returns list of RPGCharacters associated with the gameName.
+  fun getFilteredCharacterList(gameName: String): List<RPGCharacter> {
+    return characterListMap[gameName] ?: emptyList()
+  }
 }

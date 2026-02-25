@@ -30,17 +30,25 @@ class CharacterListViewModel: ViewModel() {
     private const val FILE_JSON_SUIKODEN_III = "suikoden_iii.json"
     private const val FILE_JSON_SUIKODEN_IV = "suikoden_iv.json"
     private const val FILE_JSON_SUIKODEN_V = "suikoden_v.json"
-
     private const val FILE_JSON_LEADERS = "leaders.json"
     private val TAG = CharacterListViewModel::class.java.simpleName
   }
 
   fun loadAllCharacterDate(context: Context) {
+    // Stores the entire character list data.
     val characterListMap: MutableMap<String, List<RPGCharacter>> = mutableMapOf()
+
+    // Stores the unique set of game names from the character list data.
+    val gameNameSet: MutableSet<String> = mutableSetOf()
+
+    // Parses all JSON character lists.
     val ff2CharacterList = JsonUtil.getJsonCharacterDataFromAsset(
       context = context,
       jsonFileName = FILE_JSON_FINAL_FANTASY_II
     ) ?: emptyList()
+
+
+
     characterListMap[FILE_JSON_FINAL_FANTASY_II] = ff2CharacterList
 
     val ff4CharacterList = JsonUtil.getJsonCharacterDataFromAsset(
