@@ -18,7 +18,7 @@ class CharacterListActivity: ComponentActivity() {
   }
 
   private fun loadData() {
-    viewModel.loadAllCharacterDate(this)
+    viewModel.loadAllJsonFileData(this)
   }
 
   private fun renderCompose() {
@@ -26,7 +26,7 @@ class CharacterListActivity: ComponentActivity() {
       val state = viewModel.stateFlow.collectAsState()
       CharacterComposeScreen(
         characterList = state.value.allCharacterList(),
-        gameList = state.value.gameList()
+        gameList = state.value.getGameNameList()
       )
     }
   }

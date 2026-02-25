@@ -1,10 +1,13 @@
 package com.huhx0015.rpgcharacterdirectory.ui
 
 import com.huhx0015.rpgcharacterdirectory.model.RPGCharacter
+import com.huhx0015.rpgcharacterdirectory.model.RPGGame
+import kotlin.collections.flatten
 
 data class CharacterListState(
-  val characterListMap: Map<String, List<RPGCharacter>> = emptyMap(),
-  val leaderMap: Map<Int, RPGCharacter> = emptyMap()
+  val characterListMap: Map<Int, List<RPGCharacter>> = emptyMap(),
+  val leaderMap: Map<Int, RPGCharacter> = emptyMap(),
+  val gameMap: Map<Int, RPGGame> = emptyMap()
 ) {
 
   // allCharacterList(): Returns the total list of RPGCharacters from characterListMap.
@@ -12,13 +15,13 @@ data class CharacterListState(
     return characterListMap.values.flatten()
   }
 
-  // gameList(): Returns set of unique game name values.
-  fun gameList(): Set<String> {
-    return characterListMap.values.flatten().map { character -> character.game }.toSet()
+  // getGameNameList(): Returns set of all game names in gameMap.
+  fun getGameNameList(): Set<String> {
+    return gameMap.entries.map { gameMap -> gameMap.value.gameName }.toSet()
   }
 
-  // getFilteredCharacterList: Returns list of RPGCharacters associated with the gameName.
-  fun getFilteredCharacterList(gameName: String): List<RPGCharacter> {
-    return characterListMap[gameName] ?: emptyList()
+  // getCharacterListByGameId: Returns list of RPGCharacters associated with the gameId.
+  fun getCharacterListByGameId(gameId: Int): List<RPGCharacter> {
+    return characterListMap[gameId] ?: emptyList()
   }
 }
