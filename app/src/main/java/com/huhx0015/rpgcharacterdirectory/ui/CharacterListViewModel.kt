@@ -69,7 +69,7 @@ class CharacterListViewModel: ViewModel() {
     }
   }
 
-  fun onGameFilterButtonClicked(gameId: Int) {
+  fun onGameFilterButtonClicked(gameId: Int?) {
     stateFlow.update { it.copy(selectedGameId = gameId) }
   }
 }

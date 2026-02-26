@@ -6,7 +6,6 @@ import com.squareup.moshi.JsonClass
 /**
  *  Data class primarily to hold RPG character data, read from the asset JSON files.
  */
-
 @JsonClass(generateAdapter = true) // Auto generates a JsonAdapter at compile time.
 data class RPGCharacter(
   val id: Int, // ID of RPG character.

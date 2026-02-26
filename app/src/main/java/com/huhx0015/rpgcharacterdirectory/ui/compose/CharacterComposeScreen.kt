@@ -37,7 +37,7 @@ import com.huhx0015.rpgcharacterdirectory.ui.CharacterListState
 @Composable
 fun CharacterComposeScreen(
   state: CharacterListState,
-  filterButtonClickAction: ((Int) -> Unit)
+  filterButtonClickAction: ((Int?) -> Unit)
 ) {
   val selectedGameId = state.selectedGameId
   val characterList = selectedGameId?.let { gameId ->
@@ -82,7 +82,7 @@ private fun CharacterComposeContent(
   characterList: List<RPGCharacter>,
   leaderMap: Map<Int, RPGCharacter>,
   gameList: Set<RPGGame>,
-  filterButtonClickAction: ((Int) -> Unit),
+  filterButtonClickAction: ((Int?) -> Unit),
   innerPadding: PaddingValues
 ) {
   Column(
@@ -116,21 +116,31 @@ private fun CharacterComposeContent(
 @Composable
 private fun CharacterComposeFilterButtonRow(
   gameList: Set<RPGGame>,
-  filterButtonClickAction: ((Int) -> Unit)
+  filterButtonClickAction: ((Int?) -> Unit)
 ) {
-  LazyRow(
+  Row(
     modifier = Modifier
       .fillMaxWidth()
       .padding(12.dp)
   ) {
-    items(gameList.toList()) { game ->
-      Button(
-        modifier = Modifier,
-        onClick = { filterButtonClickAction.invoke(game.gameId) }
-      ) {
-        Text(text = game.gameName)
+    // Fixed filter buton to show all characters when tapped.
+    Button(
+      modifier = Modifier.padding(end = 4.dp),
+      onClick = { filterButtonClickAction.invoke(null) }
+    ) {
+      Text(text = "ALL")
+    }
+
+    LazyRow {
+      items(gameList.toList()) { game ->
+        Button(
+          modifier = Modifier,
+          onClick = { filterButtonClickAction.invoke(game.gameId) }
+        ) {
+          Text(text = game.gameName)
+        }
+        Spacer(modifier = Modifier.width(4.dp))
       }
-      Spacer(modifier = Modifier.width(4.dp))
     }
   }
 }
