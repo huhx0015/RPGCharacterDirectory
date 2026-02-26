@@ -40,8 +40,8 @@ RPG Character Directory:
 
 * Android 15+ (API 35+) supports edge-to-edge, and Android 16 enforces it (it can’t be opted out). For Compose screens that were built before edge-to-edge became the default, this can cause content to render underneath the status bar and navigation bar (especially when 3-button navigation is enabled).
   To prevent overlap, apply the appropriate inset padding modifiers:
-  * Modifier.statusBarsPadding() — Adds top padding equal to the status bar inset. 
-  * Modifier.navigationBarsPadding() — Adds bottom padding equal to the navigation bar inset.
+  * `Modifier.statusBarsPadding()` — Adds top padding equal to the status bar inset. 
+  * `Modifier.navigationBarsPadding()` — Adds bottom padding equal to the navigation bar inset.
 
 ## Resources
 
