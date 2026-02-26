@@ -42,7 +42,10 @@ class CharacterListViewModel: ViewModel() {
 
       // If jsonFileName is `leaders.json`, this data is handled separately.
       if (jsonFileName == FILE_JSON_LEADERS) {
-        leaderMap = characterList.associateBy { it.id } // Maps `List<RPGCharacter>` to `Map<Int, RPGCharacter>`.
+        // Maps `List<RPGCharacter>` to `Map<Int, RPGCharacter>`.
+        leaderMap = characterList.associateBy { character ->
+          character.gameId
+        }
         Log.d(TAG, "Leader character data found, size is: ${characterListMap.size}")
       } else {
         // Adds game to the gameSet.
@@ -64,5 +67,9 @@ class CharacterListViewModel: ViewModel() {
         gameMap = gameMap
       )
     }
+  }
+
+  fun onGameFilterButtonClicked(gameId: Int) {
+    stateFlow.update { it.copy(selectedGameId = gameId) }
   }
 }

@@ -11,7 +11,7 @@ import okio.IOException
 
 object JsonUtil {
 
-  private const val EXT_JSON = ".json"
+  private const val FILE_EXT_JSON = ".json"
 
   // getJsonFileNameListFromAssetFolder(): Accesses the assets folder and returns a list of all
   // file names in the asset folder.
@@ -22,7 +22,7 @@ object JsonUtil {
       // List all files in the root assets folder.
       val fileList = assetManager.list("")
       fileList
-        ?.filter { it.endsWith(EXT_JSON, ignoreCase = true) }
+        ?.filter { it.endsWith(FILE_EXT_JSON, ignoreCase = true) }
         ?.forEach { fileName ->
           jsonFileList.add(fileName)
           Log.d(JsonUtil::class.java.simpleName, "JSON file in assets: $fileName")

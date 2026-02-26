@@ -30,13 +30,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.huhx0015.rpgcharacterdirectory.model.RPGCharacter
+import com.huhx0015.rpgcharacterdirectory.model.RPGGame
+import com.huhx0015.rpgcharacterdirectory.ui.CharacterListState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CharacterComposeScreen(
-  characterList: List<RPGCharacter>,
-  gameList: Set<String>
+  state: CharacterListState,
+  filterButtonClickAction: ((Int) -> Unit)
 ) {
+  val selectedGameId = state.selectedGameId
+  val characterList = selectedGameId?.let { gameId ->
+    state.getCharacterListByGameId(gameId = gameId)
+  } ?: state.allCharacterList()
+  val leaderMap = state.leaderMap
+  val gameList = state.getGameNameList()
+
   // Used for retaining scroll behavior for this screen.
   val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
@@ -60,7 +69,9 @@ fun CharacterComposeScreen(
   ) { innerPadding ->
     CharacterComposeContent(
       characterList = characterList,
+      leaderMap = leaderMap,
       gameList = gameList,
+      filterButtonClickAction = filterButtonClickAction,
       innerPadding = innerPadding
     )
   }
@@ -69,7 +80,9 @@ fun CharacterComposeScreen(
 @Composable
 private fun CharacterComposeContent(
   characterList: List<RPGCharacter>,
-  gameList: Set<String>,
+  leaderMap: Map<Int, RPGCharacter>,
+  gameList: Set<RPGGame>,
+  filterButtonClickAction: ((Int) -> Unit),
   innerPadding: PaddingValues
 ) {
   Column(
@@ -77,7 +90,10 @@ private fun CharacterComposeContent(
       .fillMaxSize()
       .padding(innerPadding)
   ) {
-    CharacterComposeFilterButtonRow(gameList = gameList)
+    CharacterComposeFilterButtonRow(
+      gameList = gameList,
+      filterButtonClickAction = filterButtonClickAction
+    )
     LazyColumn(
       modifier = Modifier
         .fillMaxWidth()
@@ -87,7 +103,10 @@ private fun CharacterComposeContent(
     ) {
       // Compose UI for each item in characterList.
       items(characterList) { rpgCharacter ->
-        CharacterComposeRow(character = rpgCharacter)
+        CharacterComposeRow(
+          character = rpgCharacter,
+          leader = leaderMap[rpgCharacter.gameId]
+        )
         Spacer(modifier = Modifier.height(4.dp))
       }
     }
@@ -95,18 +114,21 @@ private fun CharacterComposeContent(
 }
 
 @Composable
-private fun CharacterComposeFilterButtonRow(gameList: Set<String>) {
+private fun CharacterComposeFilterButtonRow(
+  gameList: Set<RPGGame>,
+  filterButtonClickAction: ((Int) -> Unit)
+) {
   LazyRow(
     modifier = Modifier
       .fillMaxWidth()
       .padding(12.dp)
   ) {
-    items(gameList.toList()) { gameName ->
+    items(gameList.toList()) { game ->
       Button(
         modifier = Modifier,
-        onClick = {}
+        onClick = { filterButtonClickAction.invoke(game.gameId) }
       ) {
-        Text(text = gameName)
+        Text(text = game.gameName)
       }
       Spacer(modifier = Modifier.width(4.dp))
     }
@@ -114,7 +136,10 @@ private fun CharacterComposeFilterButtonRow(gameList: Set<String>) {
 }
 
 @Composable
-private fun CharacterComposeRow(character: RPGCharacter) {
+private fun CharacterComposeRow(
+  character: RPGCharacter,
+  leader: RPGCharacter?
+) {
   Card(modifier = Modifier.fillMaxWidth()) {
     Row(
       modifier = Modifier
@@ -129,6 +154,7 @@ private fun CharacterComposeRow(character: RPGCharacter) {
         )
         Text(text = "Class: " + character.characterClass)
         Text(text = "Game: " + character.game)
+        leader?.let { Text(text = "Leader: " + leader.name) }
       }
     }
   }
@@ -138,22 +164,40 @@ private fun CharacterComposeRow(character: RPGCharacter) {
 @Preview
 private fun CharacterComposeScreenPreview() {
   CharacterComposeScreen(
-    characterList = listOf(
-      RPGCharacter(
-        id = 1,
-        name = "Crono",
-        characterClass = "Time Traveler",
-        game = "Chrono Trigger",
-        gameId = 1234
+    state = CharacterListState(
+      characterListMap = mapOf(
+        1 to listOf(
+          RPGCharacter(
+            id = 1,
+            name = "Crono",
+            characterClass = "Time Traveler",
+            game = "Chrono Trigger",
+            gameId = 1234
+          ),
+          RPGCharacter(
+            id = 2,
+            name = "Lucca",
+            characterClass = "Time Traveler",
+            game = "Chrono Trigger",
+            gameId = 1234
+          )
+        )
       ),
-      RPGCharacter(
-        id = 2,
-        name = "Lucca",
-        characterClass = "Time Traveler",
-        game = "Chrono Trigger",
-        gameId = 1234
-      )
+      gameMap = mapOf(
+        1 to RPGGame(
+          gameId = 1,
+          gameName = "Final Fantasy II"
+        ),
+        2 to RPGGame(
+          gameId = 2,
+          gameName = "Final Fantasy IV"
+        ),
+        3 to RPGGame(
+          gameId = 3,
+          gameName = "Final Fantasy IX"
+        )
+      ),
     ),
-    gameList = setOf("Final Fantasy II, Final Fantasy IV, Final Fantasy X")
+    filterButtonClickAction = {}
   )
 }

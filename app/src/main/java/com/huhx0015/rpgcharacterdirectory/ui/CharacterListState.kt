@@ -7,7 +7,8 @@ import kotlin.collections.flatten
 data class CharacterListState(
   val characterListMap: Map<Int, List<RPGCharacter>> = emptyMap(),
   val leaderMap: Map<Int, RPGCharacter> = emptyMap(),
-  val gameMap: Map<Int, RPGGame> = emptyMap()
+  val gameMap: Map<Int, RPGGame> = emptyMap(),
+  val selectedGameId: Int? = null
 ) {
 
   // allCharacterList(): Returns the total list of RPGCharacters from characterListMap.
@@ -15,9 +16,9 @@ data class CharacterListState(
     return characterListMap.values.flatten()
   }
 
-  // getGameNameList(): Returns set of all game names in gameMap.
-  fun getGameNameList(): Set<String> {
-    return gameMap.entries.map { gameMap -> gameMap.value.gameName }.toSet()
+  // getGameNameList(): Returns set of all RPGGame in gameMap.
+  fun getGameNameList(): Set<RPGGame> {
+    return gameMap.entries.map { gameMap -> gameMap.value }.toSet()
   }
 
   // getCharacterListByGameId: Returns list of RPGCharacters associated with the gameId.

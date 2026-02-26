@@ -23,10 +23,13 @@ class CharacterListActivity: ComponentActivity() {
 
   private fun renderCompose() {
     setContent {
+      // Collects the latest state value from the StateFlow.
       val state = viewModel.stateFlow.collectAsState()
+
+      // Sets the Compose screen.
       CharacterComposeScreen(
-        characterList = state.value.allCharacterList(),
-        gameList = state.value.getGameNameList()
+        state = state.value,
+        filterButtonClickAction = { gameId -> viewModel.onGameFilterButtonClicked(gameId = gameId) }
       )
     }
   }
