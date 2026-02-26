@@ -26,9 +26,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.huhx0015.rpgcharacterdirectory.R
 import com.huhx0015.rpgcharacterdirectory.model.RPGCharacter
 import com.huhx0015.rpgcharacterdirectory.model.RPGGame
 import com.huhx0015.rpgcharacterdirectory.ui.CharacterListState
@@ -118,29 +120,28 @@ private fun CharacterComposeFilterButtonRow(
   gameList: Set<RPGGame>,
   filterButtonClickAction: ((Int?) -> Unit)
 ) {
-  Row(
+  LazyRow(
     modifier = Modifier
       .fillMaxWidth()
       .padding(12.dp)
   ) {
-    // Fixed filter buton to show all characters when tapped.
-    Button(
-      modifier = Modifier.padding(end = 4.dp),
-      onClick = { filterButtonClickAction.invoke(null) }
-    ) {
-      Text(text = "ALL")
-    }
-
-    LazyRow {
-      items(gameList.toList()) { game ->
-        Button(
-          modifier = Modifier,
-          onClick = { filterButtonClickAction.invoke(game.gameId) }
-        ) {
-          Text(text = game.gameName)
-        }
-        Spacer(modifier = Modifier.width(4.dp))
+    item {
+      // Fixed filter buton to show all characters when tapped.
+      Button(
+        modifier = Modifier.padding(end = 4.dp),
+        onClick = { filterButtonClickAction.invoke(null) }
+      ) {
+        Text(text = stringResource(R.string.all_button_text))
       }
+    }
+    items(gameList.toList()) { game ->
+      Button(
+        modifier = Modifier,
+        onClick = { filterButtonClickAction.invoke(game.gameId) }
+      ) {
+        Text(text = game.gameName)
+      }
+      Spacer(modifier = Modifier.width(4.dp))
     }
   }
 }
