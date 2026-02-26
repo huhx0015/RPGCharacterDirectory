@@ -23,6 +23,7 @@ RPG Character Directory:
       * `implementation "com.squareup.moshi:moshi:1.15.2"`
       * `implementation "com.squareup.moshi:moshi-kotlin:1.15.2"`
       * `ksp "com.squareup.moshi:moshi-kotlin-codegen:1.15.2"`
+
 * All JSON files used by this project live in app/src/main/assets.
   * To list available files in the root of the assets directory, call:
     * `context.assets.list("")`
@@ -30,11 +31,13 @@ RPG Character Directory:
   * To open and read an asset JSON file as a string:
     * `context.assets.open(FILE_NAME).bufferedReader().use { it.readText() }`
     * Example: `JsonUtil.getJsonCharacterDataFromAsset`
+
 * To deserialize JSON with Moshi:
   * Build a Moshi instance via `Moshi.Builder()`
   * Register `KotlinJsonAdapterFactory()` using `.addLast(...)`
   * Create the appropriate `Type` (via Types) and `JsonAdapter` for the target model
   * Example: `JsonUtil.getJsonCharacterDataFromAsset`
+
 * Android 15+ (API 35+) supports edge-to-edge, and Android 16 enforces it (it can’t be opted out). For Compose screens that were built before edge-to-edge became the default, this can cause content to render underneath the status bar and navigation bar (especially when 3-button navigation is enabled).
   To prevent overlap, apply the appropriate inset padding modifiers:
   * Modifier.statusBarsPadding() — Adds top padding equal to the status bar inset. 
