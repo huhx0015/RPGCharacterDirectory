@@ -91,7 +91,8 @@ class CharacterDataRepository {
 
   // loadUpdatedCharacterList(): Updates the characterListDataFlow based on the specified gameId.
   // When a gameId is specified, the characterListDataFlow is updated with the character list
-  // associated with the gameId. If no gameId is provided, the
+  // associated with the gameId. If no gameId is provided, the characterListDataFlow is updated
+  // with the total character list from totalCharacterListData.
   fun loadUpdatedCharacterList(gameId: Int?) {
     val characterListData = gameId?.let { totalCharacterListData[gameId] }
       ?: totalCharacterListData.values.flatten()
