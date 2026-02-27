@@ -93,11 +93,8 @@ class CharacterDataRepository {
   // When a gameId is specified, the characterListDataFlow is updated with the character list
   // associated with the gameId. If no gameId is provided, the
   fun loadUpdatedCharacterList(gameId: Int?) {
-    val characterListData = gameId?.let {
-      totalCharacterListData[gameId]
-    } ?: run {
-      totalCharacterListData.values.flatten()
-    }
+    val characterListData = gameId?.let { totalCharacterListData[gameId] }
+      ?: totalCharacterListData.values.flatten()
     // Updates the StateFlow objects, which will be consumed by the view model layer when updated.
     characterListDataFlow.update {
       Log.d(TAG, "Updating the characterListDataFlow with gameId: $gameId and size: ${characterListData.size}")
