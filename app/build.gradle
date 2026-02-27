@@ -38,7 +38,7 @@ android {
 
 ext {
   compose_version = "2026.01.01"
-  compose_activity_version = "1.12.3"
+  compose_activity_version = "1.12.4"
   core_ktx_version = "1.17.0"
   espresso_version = "3.7.0"
   junit_version = "4.13.2"

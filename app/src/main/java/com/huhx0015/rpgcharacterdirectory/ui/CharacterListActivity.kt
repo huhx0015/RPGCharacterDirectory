@@ -18,7 +18,7 @@ class CharacterListActivity: ComponentActivity() {
   }
 
   private fun loadData() {
-    viewModel.loadAllJsonFileData(this)
+    viewModel.loadCharacterListData(this)
   }
 
   private fun renderCompose() {
