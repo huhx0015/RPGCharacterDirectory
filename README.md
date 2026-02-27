@@ -4,6 +4,7 @@ RPG Character Directory
 DEVELOPER: huhx0015
 
 ### RPG CHARACTER DIRECTORY
+https://github.com/user-attachments/assets/71aa22d0-ebd1-469e-8d69-ebe164e5f62b
 
 ## Description
 
