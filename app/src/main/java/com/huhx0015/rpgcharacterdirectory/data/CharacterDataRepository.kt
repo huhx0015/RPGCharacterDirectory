@@ -11,8 +11,12 @@ import kotlinx.coroutines.flow.update
 
 class CharacterDataRepository {
 
-  val characterListDataFlow: MutableStateFlow<Map<Int, List<RPGCharacter>>> =
-    MutableStateFlow(emptyMap())
+  // Stores the total character list data after deserializing all JSON files.
+  private val totalCharacterListData: MutableMap<Int, List<RPGCharacter>> = mutableMapOf()
+
+  // StateFlow objects observed by the ViewModel layer to send up to the View layer.
+  val characterListDataFlow: MutableStateFlow<List<RPGCharacter>> =
+    MutableStateFlow(emptyList())
   val leaderListDataFlow: MutableStateFlow<Map<Int, RPGCharacter>> =
     MutableStateFlow(emptyMap())
   val gameListDataFlow: MutableStateFlow<Map<Int, RPGGame>> =
@@ -23,6 +27,8 @@ class CharacterDataRepository {
     private val TAG = CharacterListViewModel::class.java.simpleName
   }
 
+  // loadAllJsonFileData(): Loads all JSON files from the `assets` folder and deserializes the data
+  // into data objects, which will then update all StateFlows in this repository.
   fun loadAllJsonFileData(context: Context) {
     // Stores the entire character list data.
     val characterListMap: MutableMap<Int, List<RPGCharacter>> = mutableMapOf()
@@ -64,10 +70,14 @@ class CharacterDataRepository {
 
     Log.d(TAG, "Total character data size: ${characterListMap.size}")
 
+    // Updates the totalCharacterListData with the data from characterListMap.
+    totalCharacterListData.clear()
+    totalCharacterListData.putAll(characterListMap)
+
     // Updates the StateFlow objects, which will be consumed by the view model layer when updated.
     characterListDataFlow.update {
       Log.d(TAG, "Updating the characterListDataFlow: ${characterListMap.size}")
-      characterListMap
+      characterListMap.values.flatten()
     }
     leaderListDataFlow.update {
       Log.d(TAG, "Updating the leaderListDataFlow: ${leaderMap.size}")
@@ -76,6 +86,22 @@ class CharacterDataRepository {
     gameListDataFlow.update {
       Log.d(TAG, "Updating the gameListDataFlow: ${gameMap.size}")
       gameMap
+    }
+  }
+
+  // loadUpdatedCharacterList(): Updates the characterListDataFlow based on the specified gameId.
+  // When a gameId is specified, the characterListDataFlow is updated with the character list
+  // associated with the gameId. If no gameId is provided, the
+  fun loadUpdatedCharacterList(gameId: Int?) {
+    val characterListData = gameId?.let {
+      totalCharacterListData[gameId]
+    } ?: run {
+      totalCharacterListData.values.flatten()
+    }
+    // Updates the StateFlow objects, which will be consumed by the view model layer when updated.
+    characterListDataFlow.update {
+      Log.d(TAG, "Updating the characterListDataFlow with gameId: $gameId and size: ${characterListData.size}")
+      characterListData
     }
   }
 }

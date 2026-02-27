@@ -47,7 +47,10 @@ RPG Character Directory: A simple Android application that leverages Moshi for J
 
 ### Architecture
 
-* MVVM Architecture
+* MVVM Architecture: MVVM with unidirectional data flow and a single UI state object, with some MVI-inspired ideas.
+  * Jetpack Compose for UI 
+  * StateFlow for reactive state 
+  * Repository for data access
 
 ### Libraries
 

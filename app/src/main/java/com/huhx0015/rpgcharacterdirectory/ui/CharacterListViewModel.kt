@@ -25,7 +25,7 @@ class CharacterListViewModel: ViewModel() {
     // because collectLatest suspends indefinitely for StateFlow (which never completes).
     viewModelScope.launch(Dispatchers.IO) {
       characterDataRepository.characterListDataFlow.collectLatest { characterList ->
-        stateFlow.update { it.copy(characterListMap = characterList) }
+        stateFlow.update { it.copy(characterList = characterList) }
       }
     }
     viewModelScope.launch(Dispatchers.IO) {
@@ -45,6 +45,6 @@ class CharacterListViewModel: ViewModel() {
   }
 
   fun onGameFilterButtonClicked(gameId: Int?) {
-    stateFlow.update { it.copy(selectedGameId = gameId) }
+    characterDataRepository.loadUpdatedCharacterList(gameId = gameId)
   }
 }

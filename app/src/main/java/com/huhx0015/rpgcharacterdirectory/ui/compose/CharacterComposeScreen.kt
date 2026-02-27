@@ -41,10 +41,7 @@ fun CharacterComposeScreen(
   state: CharacterListState,
   filterButtonClickAction: ((Int?) -> Unit)
 ) {
-  val selectedGameId = state.selectedGameId
-  val characterList = selectedGameId?.let { gameId ->
-    state.getCharacterListByGameId(gameId = gameId)
-  } ?: state.allCharacterList()
+  val characterList = state.characterList
   val leaderMap = state.leaderMap
   val gameList = state.getGameNameList()
 
@@ -176,22 +173,20 @@ private fun CharacterComposeRow(
 private fun CharacterComposeScreenPreview() {
   CharacterComposeScreen(
     state = CharacterListState(
-      characterListMap = mapOf(
-        1 to listOf(
-          RPGCharacter(
-            id = 1,
-            name = "Crono",
-            characterClass = "Time Traveler",
-            game = "Chrono Trigger",
-            gameId = 1234
-          ),
-          RPGCharacter(
-            id = 2,
-            name = "Lucca",
-            characterClass = "Time Traveler",
-            game = "Chrono Trigger",
-            gameId = 1234
-          )
+      characterList = listOf(
+        RPGCharacter(
+          id = 1,
+          name = "Crono",
+          characterClass = "Time Traveler",
+          game = "Chrono Trigger",
+          gameId = 1234
+        ),
+        RPGCharacter(
+          id = 2,
+          name = "Lucca",
+          characterClass = "Time Traveler",
+          game = "Chrono Trigger",
+          gameId = 1234
         )
       ),
       gameMap = mapOf(
