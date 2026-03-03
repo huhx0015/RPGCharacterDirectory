@@ -44,6 +44,10 @@ class CharacterListViewModel: ViewModel() {
     characterDataRepository.loadAllJsonFileData(context = context)
   }
 
+  fun loadFavoriteCharacterData(context: Context) {
+    characterDataRepository.loadFavoriteCharacterDatabase(context = context)
+  }
+
   fun onGameFilterButtonClicked(gameId: Int?) {
     characterDataRepository.loadUpdatedCharacterList(gameId = gameId)
   }

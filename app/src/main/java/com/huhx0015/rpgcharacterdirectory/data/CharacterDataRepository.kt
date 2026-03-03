@@ -2,6 +2,8 @@ package com.huhx0015.rpgcharacterdirectory.data
 
 import android.content.Context
 import android.util.Log
+import androidx.room.Room
+import com.huhx0015.rpgcharacterdirectory.database.AppDatabase
 import com.huhx0015.rpgcharacterdirectory.model.RPGCharacter
 import com.huhx0015.rpgcharacterdirectory.model.RPGGame
 import com.huhx0015.rpgcharacterdirectory.ui.CharacterListViewModel
@@ -23,8 +25,18 @@ class CharacterDataRepository {
     MutableStateFlow(emptyMap())
 
   companion object {
+    private const val DB_FAVORITE_CHARACTERS = "favorite-characters"
     private const val FILE_JSON_LEADERS = "leaders.json"
     private val TAG = CharacterListViewModel::class.java.simpleName
+  }
+
+  // loadFavoriteCharacterDatabase(): Loads the Room favorite character database.
+  fun loadFavoriteCharacterDatabase(context: Context) {
+    val db = Room.databaseBuilder(
+      context,
+      AppDatabase::class.java,
+      DB_FAVORITE_CHARACTERS
+    ).build()
   }
 
   // loadAllJsonFileData(): Loads all JSON files from the `assets` folder and deserializes the data
