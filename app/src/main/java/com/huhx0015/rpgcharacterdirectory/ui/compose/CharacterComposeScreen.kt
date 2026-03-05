@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -26,8 +28,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -108,7 +112,7 @@ private fun CharacterComposeContent(
         .padding(16.dp)
     ) {
       // Compose UI for each item in characterList.
-      items(characterList) { rpgCharacter ->
+      items(characterList, key = { "${it.id}_${it.favorited}" }) { rpgCharacter ->
         CharacterComposeRow(
           character = rpgCharacter,
           leader = leaderMap[rpgCharacter.gameId],
@@ -166,13 +170,20 @@ private fun CharacterComposeRow(
         .padding(
           horizontal = 8.dp,
           vertical = 12.dp
-        )
+        ),
+      verticalAlignment = Alignment.CenterVertically,
+      horizontalArrangement = Arrangement.Start
     ) {
-      CharacterComposeFavoriteButton(
-        characterId = character.id,
-        isFavorited = isFavorited,
-        favoriteButtonClickAction = favoriteButtonClickAction
-      )
+      Box(
+        modifier = Modifier.fillMaxHeight(),
+        contentAlignment = Alignment.Center
+      ) {
+        CharacterComposeFavoriteButton(
+          characterId = character.id,
+          isFavorited = isFavorited,
+          favoriteButtonClickAction = favoriteButtonClickAction
+        )
+      }
       Column(modifier = Modifier.fillMaxWidth()) {
         Text(
           text = character.name,
@@ -205,7 +216,12 @@ private fun CharacterComposeFavoriteButton(
       } else {
         painterResource(android.R.drawable.btn_star_big_off)
       },
-      contentDescription = if (isFavorited) "Selected icon button" else "Unselected icon button."
+      contentDescription = if (isFavorited) "Selected icon button" else "Unselected icon button.",
+      tint = if (isFavorited) {
+        colorResource(R.color.colorStarFavorited)
+      } else {
+        Color.Black
+      }
     )
   }
 }

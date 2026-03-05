@@ -57,3 +57,4 @@ RPG Character Directory: A simple Android application that leverages Moshi for J
 
 * Android Jetpack: https://developer.android.com/jetpack/
 * Moshi: https://github.com/square/moshi
+* Room: https://developer.android.com/training/data-storage/room

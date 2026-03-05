@@ -18,8 +18,8 @@ class CharacterListActivity: ComponentActivity() {
   }
 
   private fun loadData() {
-    viewModel.loadCharacterListData(context = this)
     viewModel.loadFavoriteCharacterData(context = this)
+    viewModel.loadCharacterListData(context = this)
   }
 
   private fun renderCompose() {

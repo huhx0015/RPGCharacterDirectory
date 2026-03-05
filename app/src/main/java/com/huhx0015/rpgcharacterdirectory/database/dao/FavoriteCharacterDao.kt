@@ -13,7 +13,7 @@ interface FavoriteCharacterDao {
   @Query("SELECT * FROM favorite_characters")
   fun getFavoriteCharacters(): List<FavoriteCharacter>
 
-  @Query("SELECT * From favorite_characters WHERE id LIKE :id LIMIT 1")
+  @Query("SELECT * FROM favorite_characters WHERE id = :id LIMIT 1")
   fun findByCharacterId(id: Int): FavoriteCharacter?
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)

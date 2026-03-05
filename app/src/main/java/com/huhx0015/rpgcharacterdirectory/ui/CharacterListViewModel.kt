@@ -41,7 +41,9 @@ class CharacterListViewModel: ViewModel() {
   }
 
   fun loadCharacterListData(context: Context) {
-    characterDataRepository.loadAllJsonFileData(context = context)
+    viewModelScope.launch(Dispatchers.IO) {
+      characterDataRepository.loadAllJsonFileData(context = context)
+    }
   }
 
   fun loadFavoriteCharacterData(context: Context) {
@@ -59,6 +61,8 @@ class CharacterListViewModel: ViewModel() {
       characterDataRepository.updateFavoritedCharacter(
         characterId = characterId, gameId = selectedGameId
       )
+      val updatedList = characterDataRepository.characterListDataFlow.value
+      stateFlow.update { it.copy(characterList = updatedList) }
     }
   }
 }
