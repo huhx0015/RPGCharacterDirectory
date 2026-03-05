@@ -6,7 +6,8 @@ import com.huhx0015.rpgcharacterdirectory.model.RPGGame
 data class CharacterListState(
   val characterList: List<RPGCharacter> = emptyList(),
   val leaderMap: Map<Int, RPGCharacter> = emptyMap(),
-  val gameMap: Map<Int, RPGGame> = emptyMap()
+  val gameMap: Map<Int, RPGGame> = emptyMap(),
+  val selectedGameId: Int? = null
 ) {
 
   // getGameNameList(): Returns set of all RPGGame in gameMap.

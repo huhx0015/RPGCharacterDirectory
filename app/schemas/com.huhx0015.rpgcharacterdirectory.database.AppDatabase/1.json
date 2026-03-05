@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "6f19305ad434943e4dc0c4c37293b5c0",
+    "identityHash": "6cd5215463e4912aeb9a6c473ddf551a",
     "entities": [
       {
         "tableName": "favorite_characters",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `class` TEXT NOT NULL, `game` TEXT NOT NULL, `gameId` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `class` TEXT NOT NULL, `game` TEXT NOT NULL, `gameId` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -35,7 +35,7 @@
           {
             "fieldPath": "gameId",
             "columnName": "gameId",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -49,7 +49,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6f19305ad434943e4dc0c4c37293b5c0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6cd5215463e4912aeb9a6c473ddf551a')"
     ]
   }
 }

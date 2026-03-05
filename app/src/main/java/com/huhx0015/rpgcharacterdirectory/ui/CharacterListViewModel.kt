@@ -49,6 +49,16 @@ class CharacterListViewModel: ViewModel() {
   }
 
   fun onGameFilterButtonClicked(gameId: Int?) {
+    stateFlow.update { it.copy(selectedGameId = gameId) }
     characterDataRepository.loadUpdatedCharacterList(gameId = gameId)
+  }
+
+  fun onFavoriteButtonClicked(characterId: Int) {
+    val selectedGameId = stateFlow.value.selectedGameId
+    viewModelScope.launch(Dispatchers.IO) {
+      characterDataRepository.updateFavoritedCharacter(
+        characterId = characterId, gameId = selectedGameId
+      )
+    }
   }
 }

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -17,6 +18,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -26,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,7 +43,8 @@ import com.huhx0015.rpgcharacterdirectory.ui.CharacterListState
 @Composable
 fun CharacterComposeScreen(
   state: CharacterListState,
-  filterButtonClickAction: ((Int?) -> Unit)
+  filterButtonClickAction: ((Int?) -> Unit),
+  favoriteButtonClickAction: ((Int) -> Unit)
 ) {
   val characterList = state.characterList
   val leaderMap = state.leaderMap
@@ -71,6 +76,7 @@ fun CharacterComposeScreen(
       leaderMap = leaderMap,
       gameList = gameList,
       filterButtonClickAction = filterButtonClickAction,
+      favoriteButtonClickAction = favoriteButtonClickAction,
       innerPadding = innerPadding
     )
   }
@@ -82,6 +88,7 @@ private fun CharacterComposeContent(
   leaderMap: Map<Int, RPGCharacter>,
   gameList: Set<RPGGame>,
   filterButtonClickAction: ((Int?) -> Unit),
+  favoriteButtonClickAction: ((Int) -> Unit),
   innerPadding: PaddingValues
 ) {
   Column(
@@ -104,7 +111,9 @@ private fun CharacterComposeContent(
       items(characterList) { rpgCharacter ->
         CharacterComposeRow(
           character = rpgCharacter,
-          leader = leaderMap[rpgCharacter.gameId]
+          leader = leaderMap[rpgCharacter.gameId],
+          isFavorited = rpgCharacter.favorited,
+          favoriteButtonClickAction = favoriteButtonClickAction
         )
         Spacer(modifier = Modifier.height(4.dp))
       }
@@ -146,14 +155,24 @@ private fun CharacterComposeFilterButtonRow(
 @Composable
 private fun CharacterComposeRow(
   character: RPGCharacter,
-  leader: RPGCharacter?
+  leader: RPGCharacter?,
+  isFavorited: Boolean,
+  favoriteButtonClickAction: ((Int) -> Unit)
 ) {
   Card(modifier = Modifier.fillMaxWidth()) {
     Row(
       modifier = Modifier
         .fillMaxWidth()
-        .padding(12.dp)
+        .padding(
+          horizontal = 8.dp,
+          vertical = 12.dp
+        )
     ) {
+      CharacterComposeFavoriteButton(
+        characterId = character.id,
+        isFavorited = isFavorited,
+        favoriteButtonClickAction = favoriteButtonClickAction
+      )
       Column(modifier = Modifier.fillMaxWidth()) {
         Text(
           text = character.name,
@@ -167,6 +186,30 @@ private fun CharacterComposeRow(
     }
   }
 }
+
+@Composable
+private fun CharacterComposeFavoriteButton(
+  characterId: Int,
+  isFavorited: Boolean,
+  favoriteButtonClickAction: ((Int) -> Unit)
+) {
+  IconButton(
+    modifier = Modifier,
+    enabled = true,
+    onClick = { favoriteButtonClickAction.invoke(characterId) }
+  ) {
+    Icon(
+      modifier = Modifier.size(32.dp),
+      painter = if (isFavorited) {
+        painterResource(android.R.drawable.btn_star_big_on)
+      } else {
+        painterResource(android.R.drawable.btn_star_big_off)
+      },
+      contentDescription = if (isFavorited) "Selected icon button" else "Unselected icon button."
+    )
+  }
+}
+
 
 @Composable
 @Preview
@@ -204,6 +247,7 @@ private fun CharacterComposeScreenPreview() {
         )
       ),
     ),
-    filterButtonClickAction = {}
+    filterButtonClickAction = {},
+    favoriteButtonClickAction = { _ -> }
   )
 }

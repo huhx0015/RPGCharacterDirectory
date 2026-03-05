@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.room.Room
 import com.huhx0015.rpgcharacterdirectory.database.AppDatabase
+import com.huhx0015.rpgcharacterdirectory.database.entity.toFavoriteCharacter
 import com.huhx0015.rpgcharacterdirectory.model.RPGCharacter
 import com.huhx0015.rpgcharacterdirectory.model.RPGGame
 import com.huhx0015.rpgcharacterdirectory.ui.CharacterListViewModel
@@ -15,6 +16,9 @@ class CharacterDataRepository {
 
   // Stores the total character list data after deserializing all JSON files.
   private val totalCharacterListData: MutableMap<Int, List<RPGCharacter>> = mutableMapOf()
+
+  // Room Database object storing favorite character data.
+  private lateinit var favoriteCharacterDatabase: AppDatabase
 
   // StateFlow objects observed by the ViewModel layer to send up to the View layer.
   val characterListDataFlow: MutableStateFlow<List<RPGCharacter>> =
@@ -32,7 +36,7 @@ class CharacterDataRepository {
 
   // loadFavoriteCharacterDatabase(): Loads the Room favorite character database.
   fun loadFavoriteCharacterDatabase(context: Context) {
-    val db = Room.databaseBuilder(
+    favoriteCharacterDatabase = Room.databaseBuilder(
       context,
       AppDatabase::class.java,
       DB_FAVORITE_CHARACTERS
@@ -108,10 +112,45 @@ class CharacterDataRepository {
   fun loadUpdatedCharacterList(gameId: Int?) {
     val characterListData = gameId?.let { totalCharacterListData[gameId] }
       ?: totalCharacterListData.values.flatten()
+
     // Updates the StateFlow objects, which will be consumed by the view model layer when updated.
     characterListDataFlow.update {
       Log.d(TAG, "Updating the characterListDataFlow with gameId: $gameId and size: ${characterListData.size}")
       characterListData
     }
+  }
+
+  // updateFavoritedCharacter(): Updates the Room database by either adding or deleting favorited
+  // characters. Characters are added to the database if favoriting a previously unfavorited
+  // character and deleted if favoriting a previously favorited character.
+  fun updateFavoritedCharacter(characterId: Int, gameId: Int?) {
+    var character = totalCharacterListData.values.flatten().firstOrNull { character ->
+      character.id == characterId
+    }
+    // Inverses the character's favorited status.
+    character = character?.copy(favorited = !character.favorited)
+
+    character?.let {
+      // Updates the Room database, either adding or deleting the character depending if the
+      // character is favorited or unfavorited.
+      if (character.favorited) {
+        favoriteCharacterDatabase.favoriteCharacterDao().addFavoriteCharacters(
+          character.toFavoriteCharacter()
+        )
+      } else {
+        favoriteCharacterDatabase.favoriteCharacterDao().deleteCharacter(
+          character.toFavoriteCharacter()
+        )
+      }
+
+      // Updates the character list data sets with the character with the updated favorited value.
+      val characterListData = totalCharacterListData[gameId]?.toMutableList() ?: mutableListOf()
+      characterListData.removeIf { character -> character.id == characterId }
+      characterListData.add(character)
+      totalCharacterListData[gameId ?: character.gameId] = characterListData
+
+      // Calls loadUpdatedCharacterList() to update the characterListDataFlow.
+      loadUpdatedCharacterList(gameId)
+    } ?: Log.e(TAG, "Failed to update character favorite, specified character $characterId does not exist.")
   }
 }

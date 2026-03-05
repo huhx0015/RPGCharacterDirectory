@@ -13,4 +13,5 @@ data class RPGCharacter(
   @Json(name = "class") val characterClass: String, // Class of RPG character (need to specify JSON name to avoid 'class' key word clash.
   val game: String, // Name of RPG game character is from.
   val gameId: Int, // ID of the RPG game.
+  val favorited: Boolean = false // Used to determine if character has been favorited by the user.
 )
