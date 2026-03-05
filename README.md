@@ -8,7 +8,7 @@ https://github.com/user-attachments/assets/04653a29-2d37-49db-b382-8c7e5d4fb04b
 
 ## Description
 
-RPG Character Directory: A simple Android application that leverages Moshi for JSON parsing to display a directory of characters from various Japanese RPG games, such as the Final Fantasy and Suikoden series.
+RPG Character Directory: A simple Android application that leverages Jetpack Compose for UI, Moshi for JSON parsing, and Room for SQL database access to display a directory of characters from various Japanese RPG games, such as the Final Fantasy and Suikoden series.
 
 ## Notes
 * This project uses Moshi to deserialize JSON into Kotlin data classes. Moshi codegen is enabled via KSP (Kotlin Symbol Processing), so you’ll need a few Gradle updates.
