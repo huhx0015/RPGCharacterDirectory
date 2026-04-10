@@ -17,14 +17,7 @@ buildscript {
 
 plugins {
   id "com.google.devtools.ksp" version "2.3.2" apply false
-}
-
-allprojects {
-  repositories {
-    google()
-    mavenCentral()
-    maven { url 'https://jitpack.io' }
-  }
+  id 'androidx.room' version "2.8.4" apply false
 }
 
 task clean(type: Delete) {

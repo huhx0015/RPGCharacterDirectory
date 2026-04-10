@@ -4,13 +4,15 @@ RPG Character Directory
 DEVELOPER: huhx0015
 
 ### RPG CHARACTER DIRECTORY
+https://github.com/user-attachments/assets/04653a29-2d37-49db-b382-8c7e5d4fb04b
 
 ## Description
 
-RPG Character Directory: 
+RPG Character Directory: A simple Android application that leverages Jetpack Compose for UI, Moshi for JSON parsing, and Room for SQL database access to display a directory of characters from various Japanese RPG games, such as the Final Fantasy and Suikoden series.
 
 ## Notes
 * This project uses Moshi to deserialize JSON into Kotlin data classes. Moshi codegen is enabled via KSP (Kotlin Symbol Processing), so you’ll need a few Gradle updates.
+
   * Root `build.gradle` (project-level)
     * Add the KSP Gradle plugin classpath under dependencies:
       * `classpath "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.3.2"`
@@ -47,9 +49,13 @@ RPG Character Directory:
 
 ### Architecture
 
-* MVVM Architecture
+* MVVM Architecture: MVVM with unidirectional data flow and a single UI state object, with some MVI-inspired ideas.
+  * Jetpack Compose for UI 
+  * StateFlow for reactive state 
+  * Repository for data access
 
 ### Libraries
 
 * Android Jetpack: https://developer.android.com/jetpack/
 * Moshi: https://github.com/square/moshi
+* Room: https://developer.android.com/training/data-storage/room

@@ -7,9 +7,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -17,18 +20,25 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.huhx0015.rpgcharacterdirectory.R
 import com.huhx0015.rpgcharacterdirectory.model.RPGCharacter
 import com.huhx0015.rpgcharacterdirectory.model.RPGGame
 import com.huhx0015.rpgcharacterdirectory.ui.CharacterListState
@@ -37,12 +47,10 @@ import com.huhx0015.rpgcharacterdirectory.ui.CharacterListState
 @Composable
 fun CharacterComposeScreen(
   state: CharacterListState,
-  filterButtonClickAction: ((Int?) -> Unit)
+  filterButtonClickAction: ((Int?) -> Unit),
+  favoriteButtonClickAction: ((Int) -> Unit)
 ) {
-  val selectedGameId = state.selectedGameId
-  val characterList = selectedGameId?.let { gameId ->
-    state.getCharacterListByGameId(gameId = gameId)
-  } ?: state.allCharacterList()
+  val characterList = state.characterList
   val leaderMap = state.leaderMap
   val gameList = state.getGameNameList()
 
@@ -72,6 +80,7 @@ fun CharacterComposeScreen(
       leaderMap = leaderMap,
       gameList = gameList,
       filterButtonClickAction = filterButtonClickAction,
+      favoriteButtonClickAction = favoriteButtonClickAction,
       innerPadding = innerPadding
     )
   }
@@ -83,6 +92,7 @@ private fun CharacterComposeContent(
   leaderMap: Map<Int, RPGCharacter>,
   gameList: Set<RPGGame>,
   filterButtonClickAction: ((Int?) -> Unit),
+  favoriteButtonClickAction: ((Int) -> Unit),
   innerPadding: PaddingValues
 ) {
   Column(
@@ -102,10 +112,12 @@ private fun CharacterComposeContent(
         .padding(16.dp)
     ) {
       // Compose UI for each item in characterList.
-      items(characterList) { rpgCharacter ->
+      items(characterList, key = { "${it.id}_${it.favorited}" }) { rpgCharacter ->
         CharacterComposeRow(
           character = rpgCharacter,
-          leader = leaderMap[rpgCharacter.gameId]
+          leader = leaderMap[rpgCharacter.gameId],
+          isFavorited = rpgCharacter.favorited,
+          favoriteButtonClickAction = favoriteButtonClickAction
         )
         Spacer(modifier = Modifier.height(4.dp))
       }
@@ -118,29 +130,28 @@ private fun CharacterComposeFilterButtonRow(
   gameList: Set<RPGGame>,
   filterButtonClickAction: ((Int?) -> Unit)
 ) {
-  Row(
+  LazyRow(
     modifier = Modifier
       .fillMaxWidth()
       .padding(12.dp)
   ) {
-    // Fixed filter buton to show all characters when tapped.
-    Button(
-      modifier = Modifier.padding(end = 4.dp),
-      onClick = { filterButtonClickAction.invoke(null) }
-    ) {
-      Text(text = "ALL")
-    }
-
-    LazyRow {
-      items(gameList.toList()) { game ->
-        Button(
-          modifier = Modifier,
-          onClick = { filterButtonClickAction.invoke(game.gameId) }
-        ) {
-          Text(text = game.gameName)
-        }
-        Spacer(modifier = Modifier.width(4.dp))
+    item {
+      // Fixed filter buton to show all characters when tapped.
+      Button(
+        modifier = Modifier.padding(end = 4.dp),
+        onClick = { filterButtonClickAction.invoke(null) }
+      ) {
+        Text(text = stringResource(R.string.all_button_text))
       }
+    }
+    items(gameList.toList()) { game ->
+      Button(
+        modifier = Modifier,
+        onClick = { filterButtonClickAction.invoke(game.gameId) }
+      ) {
+        Text(text = game.gameName)
+      }
+      Spacer(modifier = Modifier.width(4.dp))
     }
   }
 }
@@ -148,14 +159,31 @@ private fun CharacterComposeFilterButtonRow(
 @Composable
 private fun CharacterComposeRow(
   character: RPGCharacter,
-  leader: RPGCharacter?
+  leader: RPGCharacter?,
+  isFavorited: Boolean,
+  favoriteButtonClickAction: ((Int) -> Unit)
 ) {
   Card(modifier = Modifier.fillMaxWidth()) {
     Row(
       modifier = Modifier
         .fillMaxWidth()
-        .padding(12.dp)
+        .padding(
+          horizontal = 8.dp,
+          vertical = 12.dp
+        ),
+      verticalAlignment = Alignment.CenterVertically,
+      horizontalArrangement = Arrangement.Start
     ) {
+      Box(
+        modifier = Modifier.fillMaxHeight(),
+        contentAlignment = Alignment.Center
+      ) {
+        CharacterComposeFavoriteButton(
+          characterId = character.id,
+          isFavorited = isFavorited,
+          favoriteButtonClickAction = favoriteButtonClickAction
+        )
+      }
       Column(modifier = Modifier.fillMaxWidth()) {
         Text(
           text = character.name,
@@ -171,26 +199,53 @@ private fun CharacterComposeRow(
 }
 
 @Composable
+private fun CharacterComposeFavoriteButton(
+  characterId: Int,
+  isFavorited: Boolean,
+  favoriteButtonClickAction: ((Int) -> Unit)
+) {
+  IconButton(
+    modifier = Modifier,
+    enabled = true,
+    onClick = { favoriteButtonClickAction.invoke(characterId) }
+  ) {
+    Icon(
+      modifier = Modifier.size(32.dp),
+      painter = if (isFavorited) {
+        painterResource(android.R.drawable.btn_star_big_on)
+      } else {
+        painterResource(android.R.drawable.btn_star_big_off)
+      },
+      contentDescription = if (isFavorited) "Selected icon button" else "Unselected icon button.",
+      tint = if (isFavorited) {
+        colorResource(R.color.colorStarFavorited)
+      } else {
+        Color.Black
+      }
+    )
+  }
+}
+
+
+@Composable
 @Preview
 private fun CharacterComposeScreenPreview() {
   CharacterComposeScreen(
     state = CharacterListState(
-      characterListMap = mapOf(
-        1 to listOf(
-          RPGCharacter(
-            id = 1,
-            name = "Crono",
-            characterClass = "Time Traveler",
-            game = "Chrono Trigger",
-            gameId = 1234
-          ),
-          RPGCharacter(
-            id = 2,
-            name = "Lucca",
-            characterClass = "Time Traveler",
-            game = "Chrono Trigger",
-            gameId = 1234
-          )
+      characterList = listOf(
+        RPGCharacter(
+          id = 1,
+          name = "Crono",
+          characterClass = "Time Traveler",
+          game = "Chrono Trigger",
+          gameId = 1234
+        ),
+        RPGCharacter(
+          id = 2,
+          name = "Lucca",
+          characterClass = "Time Traveler",
+          game = "Chrono Trigger",
+          gameId = 1234
         )
       ),
       gameMap = mapOf(
@@ -208,6 +263,7 @@ private fun CharacterComposeScreenPreview() {
         )
       ),
     ),
-    filterButtonClickAction = {}
+    filterButtonClickAction = {},
+    favoriteButtonClickAction = { _ -> }
   )
 }

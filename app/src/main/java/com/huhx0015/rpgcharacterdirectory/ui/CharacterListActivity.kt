@@ -18,7 +18,8 @@ class CharacterListActivity: ComponentActivity() {
   }
 
   private fun loadData() {
-    viewModel.loadAllJsonFileData(this)
+    viewModel.loadFavoriteCharacterData(context = this)
+    viewModel.loadCharacterListData(context = this)
   }
 
   private fun renderCompose() {
@@ -29,7 +30,10 @@ class CharacterListActivity: ComponentActivity() {
       // Sets the Compose screen.
       CharacterComposeScreen(
         state = state.value,
-        filterButtonClickAction = { gameId -> viewModel.onGameFilterButtonClicked(gameId = gameId) }
+        filterButtonClickAction = { gameId -> viewModel.onGameFilterButtonClicked(gameId = gameId) },
+        favoriteButtonClickAction = { characterId ->
+          viewModel.onFavoriteButtonClicked(characterId = characterId)
+        }
       )
     }
   }
